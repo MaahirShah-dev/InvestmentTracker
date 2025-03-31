@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Investment Tracker</h1>
+
+        <!-- Trade Input Form (Outside PDF Capture Area) -->
+        <div class="form-container">
+            <input type="text" id="stockName" placeholder="Stock Name" />
+            <input type="number" id="amountInvested" placeholder="Amount Invested (₹)" />
+            <input type="number" id="buyPrice" placeholder="Buy Price per Share (₹)" />
+            <input type="number" id="sellPrice" placeholder="Sell Price per Share (₹)" />
+            <select id="tradeType">
+                <option value="short">Short-Term (STCG)</option>
+                <option value="long">Long-Term (LTCG)</option>
+            </select>
+        </div>
+
+        <!-- Buttons (Outside PDF Capture Area) -->
+        <div class="button-container">
+            <button onclick="addTrade()">Calculate</button>
+            <button onclick="downloadPDF()">Download as PDF</button>
+        </div>
+
+        <!-- PDF Capture Section (Only Tables Inside) -->
+        <div id="report-container">
+            <h1>Investment Outcome</h1>
+            <h3>Trade Details</h3>
+            <table id="tradeTable">
+                <tr><th>Details</th><th>Value</th></tr>
+                <tr><td>Stock Name</td><td><span id="stockNameDetails">-</span></td></tr>
+                <tr><td>Investment Amount</td><td>₹<span id="investmentAmount">-</span></td></tr>
+                <tr><td>Buy Price per Share</td><td>₹<span id="buyPriceDetails">-</span></td></tr>
+                <tr><td>Number of Shares Purchased</td><td><span id="numShares">-</span> shares</td></tr>
+                <tr><td>Sell Price per Share</td><td>₹<span id="sellPriceDetails">-</span></td></tr>
+                <tr><td>Total Sale Value</td><td>₹<span id="saleValue">-</span></td></tr>
+                <tr><td>Gross Profit</td><td>₹<span id="grossProfit">-</span></td></tr>
+            </table>
+
+            <h3>Charges/Tax</h3>
+            <table id="chargesTable">
+                <tr><th>Charge/Tax</th><th>Rate</th><th>Amount (₹)</th><th>Recipient</th></tr>
+                <tr><td>Brokerage Fee</td><td>0.55% of turnover</td><td>₹<span id="brokerageFee">-</span></td><td>ICICI Direct</td></tr>
+                <tr><td>Securities Transaction Tax (STT)</td><td>0.1% of turnover</td><td>₹<span id="sttFee">-</span></td><td>Government of India</td></tr>
+                <tr><td>Exchange Transaction Charges</td><td>0.0034% of turnover</td><td>₹<span id="exchangeCharges">-</span></td><td>NSE/BSE</td></tr>
+                <tr><td>SEBI Turnover Fees</td><td>0.0001% of turnover</td><td>₹<span id="sebiFee">-</span></td><td>SEBI</td></tr>
+                <tr><td>Stamp Duty (Maharashtra Rate)</td><td>0.015% of buy value</td><td>₹<span id="stampDuty">-</span></td><td>Maharashtra Govt.</td></tr>
+                <tr><td>GST (18% on Brokerage + Charges)</td><td>18% of (Brokerage + Charges)</td><td>₹<span id="gstFee">-</span></td><td>Government of India</td></tr>
+                <tr><td>Total Charges Before Tax</td><td>-</td><td>₹<span id="totalCharges">-</span></td><td>-</td></tr>
+            </table>
+
+            <h3>Net Profit After Tax</h3>
+            <table id="scenarioTable">
+                <tr><th>Scenario</th><th>Net Profit Before Tax (₹)</th><th>Tax Rate</th><th>Income Tax (₹)</th><th>Final Profit After Tax (₹)</th></tr>
+                <tr><td>Short-Term (STCG)</td><td>₹<span id="netProfitBeforeTax">-</span></td><td>15% on profit</td><td>₹<span id="incomeTax">-</span></td><td>₹<span id="finalProfit">-</span></td></tr>
+                <tr><td>Long-Term (LTCG)</td><td>₹<span id="longTermNetProfitBeforeTax">-</span></td><td>10% (if gain > ₹1L)</td><td>₹<span id="longTermIncomeTax">-</span></td><td>₹<span id="longTermFinalProfit">-</span></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>  
+</body>
+</html>
