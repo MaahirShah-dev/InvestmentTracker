@@ -1,0 +1,8 @@
+{
+    "name": "investment-tracker",
+    "version": "1.0.0",
+    "scripts": {
+      "vercel-build": "echo 'Static project, no build step'"
+    }
+  }
+  
